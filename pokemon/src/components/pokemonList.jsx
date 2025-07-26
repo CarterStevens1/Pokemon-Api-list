@@ -25,11 +25,6 @@ async function getAllPokemon(url) {
 }
 
 
-function filterPokemons(pokemons, selectedType) {
-    return pokemons.filter(pokemon => pokemon.types.some(type => type.type.name === selectedType));
-}
-
-
 
 export default function PokemonList() {
     const [pokemonData, setPokemonData] = useState([]);
@@ -64,13 +59,6 @@ export default function PokemonList() {
 
     return (
         <section>
-
-            <div className="flex flex-wrap gap-2 items-center">
-                {/* Use pokeColor instead */}
-                {[...new Set(pokemonData.map(pokemon => pokemon.types[0].type.name))].map(type => (
-                    <span onClick={() => setPokemonData(filterPokemons(pokemonData, type))} className="rounded-2xl px-3 py-1 cursor-pointer" key={type}>{type}</span>
-                ))}
-            </div>
 
             <div id="pokemonList" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-12">
                 {pokemonData.map((pokemon, index) => (
